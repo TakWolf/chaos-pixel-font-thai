@@ -1,4 +1,4 @@
-from tools import build_fonts
+from tools import build_fonts, build_site
 
 
 def main() -> None:
@@ -6,6 +6,7 @@ def main() -> None:
         cleanup=True,
         font_formats={'otf.woff2'},
     )
+    build_site.main()
 
 
 if __name__ == '__main__':

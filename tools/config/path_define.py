@@ -11,6 +11,7 @@ CONFIGS_KERNING_DIR = CONFIGS_DIR.joinpath('kerning')
 CONFIGS_FEATURES_DIR = CONFIGS_DIR.joinpath('features')
 
 GLYPHS_DIR = ASSETS_DIR.joinpath('glyphs')
+TEMPLATES_DIR = ASSETS_DIR.joinpath('templates')
 
 BUILD_DIR = PROJECT_ROOT_DIR.joinpath('build')
 OUTPUTS_DIR = BUILD_DIR.joinpath('outputs')
