@@ -3,4 +3,20 @@ name = "chaos-pixel-font-thai"
 version = "0.0.0"
 requires-python = ">=3.14"
 
-dependencies = []
+dependencies = [
+    "pixel-font-builder==0.0.61",
+    "pixel-font-knife==0.0.30",
+    "pyyaml==6.0.3",
+    "loguru==0.7.3",
+    "cyclopts==5.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
