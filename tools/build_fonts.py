@@ -8,7 +8,7 @@ from pixel_font_knife.cmap.mapping.mapping import CmapMapping
 from tools.config import path_define, project, manifest, options
 from tools.config.font import FontConfig
 from tools.config.options import FontSize, FontFormat
-from tools.extra import publish_service
+from tools.extra import publish_service, info_service
 from tools.font.context import FontBuildContext
 
 app = App(
@@ -45,8 +45,12 @@ def main(
         font_config = FontConfig.load(font_size)
         build_context = FontBuildContext.load(font_config, mappings, kerning_template)
 
+        alphabet = build_context.get_alphabet()
+
         build_context.make_fonts(font_formats)
         publish_service.make_release_zips(font_size, font_formats)
+        info_service.make_info(font_size, alphabet)
+        info_service.make_alphabet_txt(font_size, alphabet)
 
 
 if __name__ == '__main__':

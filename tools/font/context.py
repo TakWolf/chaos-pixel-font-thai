@@ -69,6 +69,9 @@ class FontBuildContext:
     def font_size(self) -> int:
         return self.font_config.font_size
 
+    def get_alphabet(self) -> Sequence[str]:
+        return [chr(code_point) for code_point in sorted(self.cmap_context.get_character_mapping().keys())]
+
     def create_builder(self) -> FontBuilder:
         builder = FontBuilder()
         builder.font_metric.font_size = self.font_size

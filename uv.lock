@@ -128,6 +128,8 @@ dependencies = [
     { name = "pixel-font-builder" },
     { name = "pixel-font-knife" },
     { name = "pyyaml" },
+    { name = "unicodedata2" },
+    { name = "unidata-blocks" },
 ]
 
 [package.dev-dependencies]
@@ -142,6 +144,8 @@ requires-dist = [
     { name = "pixel-font-builder", specifier = "==0.0.61" },
     { name = "pixel-font-knife", specifier = "==0.0.30" },
     { name = "pyyaml", specifier = "==6.0.3" },
+    { name = "unicodedata2", specifier = "==18.0.0" },
+    { name = "unidata-blocks", specifier = "==0.0.27" },
 ]
 
 [package.metadata.requires-dev]
