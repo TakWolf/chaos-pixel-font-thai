@@ -3,7 +3,7 @@ from collections.abc import Sequence
 from datetime import datetime
 
 from loguru import logger
-from pixel_font_builder import FontBuilder, WeightName, SerifStyle, SlantStyle, WidthStyle, Glyph, opentype
+from pixel_font_builder import FontBuilder, WeightName, SerifStyle, SlantStyle, WidthStyle, Glyph
 from pixel_font_knife.cmap.context import CmapContext
 from pixel_font_knife.cmap.kerning.template import CmapKerningTemplate
 from pixel_font_knife.cmap.mapping.mapping import CmapMapping
@@ -14,6 +14,7 @@ from tools.config import path_define, project
 from tools.config.font import FontConfig
 from tools.config.glyph.metric import GlyphMetricRules
 from tools.config.options import FontFormat
+from tools.font.feature import create_feature_program
 
 
 class FontBuildContext:
@@ -134,14 +135,16 @@ class FontBuildContext:
         builder.kerning_values.update(kerning_values)
 
         builder.opentype_config.field_overrides.head_y_max = self.font_config.ascent
-        builder.opentype_config.field_overrides.head_y_min = self.font_config.descent
-
-        builder.opentype_config.features = opentype.FeatureProgram([
-            opentype.FeatureFile(
-                path_define.CONFIGS_FEATURES_DIR.joinpath('calt.fea'),
-                include_dir=path_define.CONFIGS_FEATURES_DIR,
+        builder.opentype_config.field_overrides.head_y_min = min(
+            self.font_config.descent,
+            min(
+                glyph.horizontal_offset[1]
+                for glyph in builder.glyphs
+                if glyph.bitmap is not None
             ),
-        ])
+        )
+
+        builder.opentype_config.features = create_feature_program()
 
         return builder
 
